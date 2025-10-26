@@ -1,12 +1,11 @@
 import { SortType } from '../App';
 
 export function getSortedGoods(
-  currGoods: string[],
   initialGoods: string[],
   sortField: SortType,
   reverseField: boolean,
 ) {
-  const preparedGoods = [...currGoods];
+  const preparedGoods = [...initialGoods];
 
   if (sortField === SortType.none && reverseField === false) {
     return initialGoods;

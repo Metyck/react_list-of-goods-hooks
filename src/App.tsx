@@ -27,13 +27,7 @@ export const App: React.FC = () => {
   const [sortField, setSortField] = useState<SortType>(SortType.none);
   const [reverseField, setReverseField] = useState<boolean>(false);
   const initialGoods = [...goodsFromServer];
-  const [currGoods, setCurrGoods] = useState(initialGoods);
-  const visibleGoods = getSortedGoods(
-    currGoods,
-    initialGoods,
-    sortField,
-    reverseField,
-  );
+  const visibleGoods = getSortedGoods(initialGoods, sortField, reverseField);
 
   return (
     <div className="section content">
@@ -43,7 +37,6 @@ export const App: React.FC = () => {
           className={`button is-info ${sortField === SortType.alphabetically ? SortType.none : 'is-light'}`}
           onClick={() => {
             setSortField(SortType.alphabetically);
-            setCurrGoods(visibleGoods);
           }}
         >
           Sort alphabetically
@@ -54,7 +47,6 @@ export const App: React.FC = () => {
           className={`button is-success ${sortField === SortType.length ? SortType.none : 'is-light'}`}
           onClick={() => {
             setSortField(SortType.length);
-            setCurrGoods(visibleGoods);
           }}
         >
           Sort by length
@@ -65,7 +57,6 @@ export const App: React.FC = () => {
           className={`button is-warning ${reverseField ? '' : 'is-light'}`}
           onClick={() => {
             setReverseField(!reverseField);
-            setCurrGoods(visibleGoods);
           }}
         >
           Reverse
@@ -78,7 +69,6 @@ export const App: React.FC = () => {
             onClick={() => {
               setSortField(SortType.none);
               setReverseField(false);
-              setCurrGoods(visibleGoods);
             }}
           >
             Reset
